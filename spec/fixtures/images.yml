@@ -1,0 +1,16 @@
+hifive_image:
+  name: "7a5cb10c-2834-40a5-b28e-bd6bb25e11d9"
+  extension: "jpg"
+  restaurant: hifive
+juke_image:
+  name: "905b9ed3-f9e4-46ac-8267-12f34984c0d2"
+  extension: "jpg"
+  restaurant: juke
+kfc_image:
+  name: "e327f6d7-1f00-41f1-88ba-3376a7925e75"
+  extension: "jpg"
+  restaurant: kfc
+wendys_image:
+  name: "203052"
+  extension: "png"
+  restaurant: wendys

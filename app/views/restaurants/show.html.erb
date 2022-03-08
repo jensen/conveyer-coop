@@ -1,0 +1,7 @@
+<section class="px-4 py-6">
+  <%= resizeable_image_tag @restaurant.format_header_image, 800, 256, {
+    alt: "Header image for #{@restaurant.name}",
+    class: "rounded-2xl"
+  } %>
+  <h2 class="my-4 font-bold text-4xl text-gray-700"><%= @restaurant.name %></h2>
+</section>

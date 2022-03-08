@@ -1,0 +1,9 @@
+chicken:
+  name: 'Chicken'
+  slug: 'chicken'
+burgers:
+  name: 'Burgers'
+  slug: 'burgers'
+fastfood:
+  name: 'Fast Food'
+  slug: 'fast-food'

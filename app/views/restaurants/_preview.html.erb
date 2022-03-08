@@ -1,0 +1,5 @@
+<div class="w-64">
+  <%= resizeable_image_tag restaurant.format_header_image, 256, 128, { alt: "Picture of food from #{restaurant.name}", class: "rounded-md" } %>
+  <h2 class="mt-2 font-bold text-sm text-gray-700"><%= restaurant.name %></h2>
+  <h3 class="font-light text-xs text-gray-500"><%= restaurant.format_cuisines %></h3>
+</div>

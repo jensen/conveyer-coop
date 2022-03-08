@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :restaurants, param: :slug, only: :show
+  resources :cuisines, param: :slug, only: :show
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  root 'cuisines#index'
 end
