@@ -1,0 +1,18 @@
+<section class="pt-8 flex flex-col items-center">
+  <h2 class="font-bold text-2xl">Sign In</h2>
+  <h3 class="mt-2 text-gray-500">New to food conveyer coop? <a href="/register" class="font-semibold text-red-600">Sign Up</a></h3>
+  <%= form_with scope: :session, url: sessions_path, class: "w-80 flex flex-col space-y-4" do |form| %>
+
+    <section>
+      <%= form.label :email, class: "block mb-2" %>
+      <%= form.email_field :email, class: "input" %>
+    </section>
+
+    <section>
+      <%= form.label :password, class: "block mb-2" %>
+      <%= form.password_field :password, class: "input" %>
+    </section>
+    <br />
+    <%= form.submit "Sign In", class: 'block hover:bg-red-700 hover:cursor-pointer bg-red-600 text-white px-4 py-2 rounded-full' %>
+  <% end %>
+</section>

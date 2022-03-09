@@ -1,0 +1,32 @@
+<section class="pt-8 flex flex-col items-center">
+  <h2 class="font-bold text-2xl">Sign Up</h2>
+  <h3 class="mt-2 text-gray-500">Already have an account? <a href="/login" class="font-semibold text-red-600">Sign In</a></h3>
+  <%= form_with model: @user, class: "w-80 flex flex-col space-y-4" do |form| %>
+
+    <section>
+      <%= form.label :email, class: "block mb-2" %>
+      <%= form.email_field :email, class: "input" %>
+      <% @user.errors.full_messages_for(:email).each do |message| %>
+        <%= render "errors/form", message: message %>
+      <% end %>
+    </section>
+
+    <section>
+      <%= form.label :password, class: "block mb-2" %>
+      <%= form.password_field :password, class: "input" %>
+      <% @user.errors.full_messages_for(:password).each do |message| %>
+        <%= render "errors/form", message: message %>
+      <% end %>
+    </section>
+
+    <section>
+      <%= form.label :password_confirmation, "Confirm Password", class: "block mb-2" %>
+      <%= form.password_field :password_confirmation, class: "input" %>
+      <% @user.errors.full_messages_for(:password_confirmation).each do |message| %>
+        <%= render "errors/form", message: message %>
+      <% end %>
+    </section>
+    <br />
+    <%= form.submit "Sign Up", class: 'block hover:bg-red-700 hover:cursor-pointer bg-red-600 text-white px-4 py-2 rounded-full' %>
+  <% end %>
+</section>
