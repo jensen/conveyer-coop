@@ -9,6 +9,7 @@ class Restaurant < ApplicationRecord
   has_many :restaurant_images
   has_many :images, through: :restaurant_images
 
+  has_many :menu_categories
   has_many :stores
 
   def format_cuisines

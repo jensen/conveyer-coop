@@ -1,11 +1,19 @@
 FactoryBot.define do
   factory :restaurant do
-    name { "Planetary Burger" }
+    sequence(:name) { |n| "Restaurant #{n}" }
+    sequence(:slug) { |n| "restaurant-#{n}"}
 
-    trait :with_images do
-      after(:create) do |restaurant|
-        create(:image, restaurants: [restaurant])
+    factory :restaurant_with_images do
+      transient do
+        image_count { 3 }
       end
+
+      images do
+        Array.new(image_count) {
+          association(:image)
+        }
+      end
+
     end
   end
 end

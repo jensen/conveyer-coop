@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]
 
+  resources :menu_items, only: [:show]
+
   get "/register", to: "users#new"
   get "/login", to: "sessions#new"
   delete '/logout',  to: 'sessions#destroy'

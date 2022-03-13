@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Cuisines", type: :request do
   describe "GET /" do
     it "returns a 200 with the cuisines/index template" do
-      create(:cuisine)
+      build(:cuisine)
 
       get root_path
 

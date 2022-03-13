@@ -48,6 +48,56 @@ juke.images.create(
   extension: "jpg"
 )
 
+juke_fried_chicken = juke.menu_categories.create(
+  name: "Fried Chicken"
+)
+
+juke_bbq_pork_ribs = juke.menu_categories.create(
+  name: "BBQ Pork Ribs"
+)
+
+juke_fried_chicken.menu_items.create(
+  name: "Fried Chicken - Two Pieces",
+  description: "Our crispy gluten free chicken thighs and drumsticks.  Locally sourced from Rossdown Farms.",
+  price: 775
+)
+
+juke_fried_chicken.menu_items.create(
+  name: "Fried Chicken - Three Pieces",
+  description: "Our crispy gluten free chicken thighs and drumsticks.  Locally sourced from Rossdown Farms.",
+  price: 1025
+)
+
+juke_fried_chicken.menu_items.create(
+  name: "Fried Chicken - Five Pieces",
+  description: "Our crispy gluten free chicken thighs and drumsticks.  Locally sourced from Rossdown Farms.",
+  price: 1825
+)
+
+juke_fried_chicken.menu_items.create(
+  name: "Fried Chicken - Ten Pieces",
+  description: "Our crispy gluten free chicken thighs and drumsticks.  Locally sourced from Rossdown Farms.",
+  price: 3025
+)
+
+juke_bbq_pork_ribs.menu_items.create(
+  name: "Half Slab",
+  description: "Half slab of BBQ pork ribs smothered with Juke's famous BBQ sauce.",
+  price: 1840
+)
+
+juke_bbq_pork_ribs.menu_items.create(
+  name: "Quarter Slab",
+  description: "Quarter slab of BBQ pork ribs smothered with Juke's famous BBQ sauce.",
+  price: 1140
+)
+
+juke_bbq_pork_ribs.menu_items.create(
+  name: "Full Slab",
+  description: "Full slab of BBQ pork ribs smothered with Juke's famous BBQ sauce.",
+  price: 3075
+)
+
 kfc = Restaurant.create(
   { name: "KFC", cost: 2 }
 )

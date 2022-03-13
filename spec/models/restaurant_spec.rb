@@ -5,7 +5,7 @@ describe Restaurant do
 
   describe "#format_header_image" do
     it "combines the name and extension to get the header_image" do
-      restaurant = create(:restaurant, :with_images)
+      restaurant = build(:restaurant_with_images)
 
       expect(restaurant.format_header_image).to eq "#{restaurant.images.first.name}.#{restaurant.images.first.extension}"
     end

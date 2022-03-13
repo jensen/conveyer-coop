@@ -1,15 +1,17 @@
 FactoryBot.define do
   factory :cuisine do
-    name { "Vegetarian" }
+    sequence(:name) { |n| "Cuisine #{n}" }
+    sequence(:slug) { |n| "cuisine-#{n}"}
 
-    trait :with_restaurants do
-      after(:create) do |cuisine|
-        [
-          'Restaurant 1',
-          'Restaurant 2'
-        ].map do |name|
-          create(:restaurant, :with_images, name: name, cuisines: [cuisine])
-        end
+    factory :cuisine_with_restaurants do
+      transient do
+        restaurant_count { 3 }
+      end
+
+      restaurants do
+        Array.new(restaurant_count) {
+          association(:restaurant_with_images)
+        }
       end
     end
   end

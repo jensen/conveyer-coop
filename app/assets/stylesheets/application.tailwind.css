@@ -6,4 +6,20 @@
   .input {
     @apply bg-gray-100 appearance-none border-2 border-gray-100 rounded w-full py-2 px-4 text-gray-700 leading-tight font-semibold focus:ring-0 focus:outline-none focus:bg-white focus:border-gray-800
   }
+
+  .modal {
+    @apply flex items-center justify-center;
+    @apply fixed z-40 inset-0 h-full p-6;
+  }
+
+  .modal__window {
+    @apply w-full max-w-lg overflow-hidden relative;
+    @apply bg-white bg-opacity-90 shadow-lg rounded-xl;
+  }
+
+  .modal__backdrop {
+    @apply cursor-default;
+    @apply w-full h-full fixed inset-0;
+    @apply bg-gray-200 bg-opacity-70;
+  }
 }

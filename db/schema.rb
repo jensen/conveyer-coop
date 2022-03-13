@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_13_232436) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_13_233900) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,6 +43,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_13_232436) do
     t.string "extension"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "menu_categories", force: :cascade do |t|
+    t.string "name"
+    t.bigint "restaurant_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_menu_categories_on_restaurant_id"
+  end
+
+  create_table "menu_items", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "price"
+    t.bigint "menu_category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["menu_category_id"], name: "index_menu_items_on_menu_category_id"
   end
 
   create_table "restaurant_images", force: :cascade do |t|
@@ -83,6 +101,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_13_232436) do
 
   add_foreign_key "culinary_styles", "cuisines"
   add_foreign_key "culinary_styles", "restaurants"
+  add_foreign_key "menu_categories", "restaurants"
+  add_foreign_key "menu_items", "menu_categories"
   add_foreign_key "restaurant_images", "images"
   add_foreign_key "restaurant_images", "restaurants"
   add_foreign_key "stores", "cities"

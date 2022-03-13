@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "cuisines/show", type: :view do
   it "renders a list of restaurants" do
-    cuisine = create(:cuisine, :with_restaurants)
+    cuisine = build(:cuisine_with_restaurants)
 
     assign(:cuisine, cuisine)
 
