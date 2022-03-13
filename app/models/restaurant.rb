@@ -6,8 +6,10 @@ class Restaurant < ApplicationRecord
   has_many :culinary_styles
   has_many :cuisines, through: :culinary_styles
 
+  has_many :restaurant_images
+  has_many :images, through: :restaurant_images
+
   has_many :stores
-  has_many :images
 
   def format_cuisines
     self.cuisines.map { |cuisine| cuisine.name }.join(", ")

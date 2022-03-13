@@ -4,7 +4,7 @@ describe Restaurant do
   it_behaves_like "sluggable"
 
   describe "#format_header_image" do
-    fixtures :restaurants, :images
+    fixtures :restaurants, :restaurant_images
 
     it "combines the name and extension to get the header_image" do
       restaurant = restaurants.first

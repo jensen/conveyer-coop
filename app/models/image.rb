@@ -1,3 +1,4 @@
 class Image < ApplicationRecord
-  belongs_to :restaurant
+  has_many :restaurant_images
+  has_many :restaurants, through: :restaurant_images
 end
