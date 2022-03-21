@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :cuisine do
     sequence(:name) { |n| "Cuisine #{n}" }
-    sequence(:slug) { |n| "cuisine-#{n}"}
+    sequence(:slug) { |n| "cuisine-#{n}" }
 
     factory :cuisine_with_restaurants do
       transient do

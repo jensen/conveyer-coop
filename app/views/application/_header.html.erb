@@ -7,7 +7,7 @@
     <div class="w-64 flex justify-end">
       <% unless current_page?(login_path) or current_page?(register_path) %>
         <% if logged_in? %>
-          <%= link_to "Sign Out", logout_path, { data: { "turbo-method": "delete" }, class: "block text-white text-sm bg-red-700 px-4 py-2 rounded-full" } %>
+          <%= render partial: "carts/preview", locals: { cart: current_cart } %>
         <% else %>
           <a href="/login" class="block text-white text-sm px-4 py-2">Sign In</a>
           <a href="/register" class="block bg-white text-sm px-4 py-2 rounded-full">Sign Up</a>

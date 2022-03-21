@@ -1,0 +1,13 @@
+<%= turbo_frame_tag "cart" do %>
+  <section class="cart" data-controller="cart">
+    <button type="button" class="cart__backdrop" tabindex="-1" data-action="cart#close"></button>
+    <div class="cart__window w-80 px-6 pt-8 pb-4" data-cart-target="window">
+      <section class="pb-4 border-b">
+        <%= turbo_frame_tag "cart-checkout" do %>
+          <%= render partial: "carts/checkout", locals: { total: @cart.total, disabled: @cart.empty? } %>
+        <% end %>
+      </section>
+      <%= render @cart %>
+    </div>
+  </section>
+<% end %>

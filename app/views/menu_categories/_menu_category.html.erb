@@ -2,7 +2,7 @@
 <ul class="mt-1 grid grid-cols-2 gap-4">
   <% menu_category.menu_items.each do |item| %>
     <%= link_to render(partial: "menu_items/menu_item", locals: { menu_item: item }),
-                menu_item_path(item),
+                new_menu_item_line_item_path(item),
                 data: { turbo_frame: "modal" } %>
   <% end %>
 </ul>

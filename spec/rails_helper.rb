@@ -8,7 +8,9 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'support/factory_bot'
 
 require 'simplecov'
-SimpleCov.start "rails"
+SimpleCov.start "rails" do
+  enable_coverage :branch
+end
 
 require 'rspec/rails'
 require 'capybara/rails'
@@ -70,4 +72,6 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.include Capybara::RSpecMatchers, type: :request
 end

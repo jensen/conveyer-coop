@@ -1,0 +1,17 @@
+<section class="flex justify-center">
+  <div class="w-128 flex flex-col items-center space-y-8">
+    <h1 class="py-12 font-bold text-6xl">Thank you for your order.</h1>
+    <h3 class="text-gray-800">
+      <% if @order.delivery? %>
+        The order will be delivered to your address<br/>
+        <strong><%= @order.address %></strong>.
+      <% else %>
+        The order will be ready for pickup soon at<br/>
+        <strong><%= @order.address %></strong>.
+      <% end %>
+    </h3>
+    <h3 class="text-sm text-gray-700">Order ID: #<%= @order.id %></h3>
+    <p class="italic font-bold text-xl">Still Hungry?</p>
+    <%= link_to "Order Again", root_path, class: "w-fit btn--red" %>
+  </div>
+</section>

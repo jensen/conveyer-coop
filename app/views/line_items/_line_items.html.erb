@@ -1,0 +1,10 @@
+<%= turbo_frame_tag LineItem.new do %>
+  <% if line_items.empty? %>
+    <%= render "carts/empty" %>
+  <% end %>
+<% end %>
+<% unless line_items.empty? %>
+  <ul class="w-full">
+    <%= render line_items %>
+  </ul>
+<% end %>

@@ -12,14 +12,57 @@
     @apply fixed z-40 inset-0 h-full p-6;
   }
 
+  .btn--red {
+    @apply inline-block w-full text-white text-sm bg-red-500 px-4 py-2 rounded-full flex justify-between items-center disabled:bg-gray-300
+  }
+
   .modal__window {
     @apply w-full max-w-lg overflow-hidden relative;
-    @apply bg-white bg-opacity-90 shadow-lg rounded-xl;
+    @apply bg-white shadow-lg rounded-xl;
   }
 
   .modal__backdrop {
     @apply cursor-default;
     @apply w-full h-full fixed inset-0;
     @apply bg-gray-200 bg-opacity-70;
+  }
+
+  .cart {
+    @apply flex justify-end;
+    @apply fixed z-40 inset-0 h-full;
+  }
+
+  @keyframes slidein {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideout {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  .cart__window {
+    @apply overflow-hidden relative;
+    @apply bg-white shadow-2xl;
+
+    animation: slidein 0.5s ease-in;
+  }
+
+  .cart__window--close {
+    animation: slideout 0.5s ease-out;
+  }
+
+  .cart__backdrop {
+    @apply cursor-default;
+    @apply w-full h-full fixed inset-0;
   }
 }

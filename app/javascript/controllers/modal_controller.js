@@ -10,6 +10,13 @@ export default class extends Controller {
     if (event.key === 'Escape') this.close()
   }
 
+  submitEnd(event) {
+    console.log(event.detail)
+    if (event.detail.success) {
+      this.close()
+    }
+  }
+
   get modalTurboFrame() {
     return document.querySelector("turbo-frame[id='modal']")
   }
