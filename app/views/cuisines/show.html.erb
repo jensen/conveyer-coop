@@ -2,7 +2,8 @@
   <ul class="flex flex-wrap justify-between">
     <% @cuisine.restaurants.each do |restaurant| %>
       <li>
-        <%= link_to render(partial: 'restaurants/preview', locals: { restaurant: restaurant }), restaurant_path(slug: restaurant.slug) %>
+        <%= link_to render(partial: 'restaurants/preview', locals: { restaurant: restaurant }),
+                    restaurant_path(slug: restaurant.slug) %>
       </li>
     <% end %>
   </ul>
