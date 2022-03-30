@@ -31,4 +31,20 @@ RSpec.describe User, type: :model do
     expect(user).not_to be_valid
     expect(user.errors.messages[:password_confirmation]).to include("doesn't match Password")
   end
+
+  context "has a profile" do
+    let(:user) { build(:user, profile: build(:profile)) }
+
+    it "has an address" do
+      expect(user.profile.address).to eq "123 User Address"
+    end
+
+    it "has a postal code" do
+      expect(user.profile.postal_code).to eq "H0H 0H0"
+    end
+
+    it "has a city" do
+      expect(user.profile.city.name).to eq "City"
+    end
+  end
 end
