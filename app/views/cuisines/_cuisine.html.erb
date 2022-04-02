@@ -1,5 +1,10 @@
-<li class="px-4 py-2 my-4 border-t border-b border-gray-200">
-  <span class="text-xs font-light">
-    <%= link_to cuisine.name, cuisine_path(slug: cuisine.slug)%>
-  </span>
+<li class="px-4 py-2 my-4 flex flex-col items-center animation--scale">
+  <%= link_to cuisine_path(slug: cuisine.slug), class: "contents" do %>
+    <div class="w-16 h-16 p-2 flex justify-center">
+      <%= image_tag "cuisines/#{cuisine.slug}.svg"  %>
+    </div>
+    <h3 class="text-xs font-semibold text-sm font-gray-800">
+      <%= cuisine.name %>
+    </h3>
+  <% end %>
 </li>

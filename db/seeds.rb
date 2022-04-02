@@ -9,15 +9,14 @@
 cuisine = Cuisine.create([
                            { name: "Chicken" },
                            { name: "Burgers" },
-                           { name: "Fast Food" },
+                           { name: "Fast Food"},
                            { name: "Desserts" },
-                           { name: "Salad" },
+                           { name: "Bakery" },
                            { name: "Pizza" },
-                           { name: "Breakfast" },
-                           { name: "Healthy" },
-                           { name: "Sandwiches" },
+                           { name: "Salad" },
+                           { name: "Seafood" },
                            { name: "Vegan" },
-                           { name: "Coffee" }
+                           { name: "Sandwiches" }
                          ])
 
 hifive = Restaurant.create({
@@ -209,7 +208,6 @@ kfc.stores.create([{
                    {
                      address: '2190 Kingsway',
                      postal_code: 'V5N 2T5',
-
                      city: vancouver
                    }])
 

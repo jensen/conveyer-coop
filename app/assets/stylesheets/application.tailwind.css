@@ -12,6 +12,16 @@
     @apply fixed z-40 inset-0 h-full p-6;
   }
 
+  .animation--scale {
+    transform: scale(1);
+    transition: transform 0.5s ease-out;
+  }
+
+  .animation--scale:hover {
+    transform: scale(1.2);
+    transition: transform 0.3s ease-out;
+  }
+
   .btn--red {
     @apply inline-block w-full text-white text-sm bg-red-500 px-4 py-2 rounded-full flex justify-between items-center disabled:bg-gray-300
   }
