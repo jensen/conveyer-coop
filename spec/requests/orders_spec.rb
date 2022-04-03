@@ -24,8 +24,8 @@ RSpec.describe "Orders", type: :request do
     end
 
     context "pickup" do
-      let(:restaurant) { create(:restaurant, stores: [create(:store)]) }
-      let(:menu_category) { create(:menu_category, restaurant: restaurant) }
+      let(:store) { create(:store, restaurant: create(:restaurant, name: "Pickup Restaurant")) }
+      let(:menu_category) { create(:menu_category, restaurant: store.restaurant) }
       let(:menu_item) { create(:menu_item, menu_category: menu_category) }
       let(:cart) { create(:cart, line_items: [create(:line_item, menu_item: menu_item)]) }
 
@@ -34,6 +34,7 @@ RSpec.describe "Orders", type: :request do
 
         get new_order_path(order: { delivery: "false" })
 
+        expect(response.body).to have_selector("div", text: "Pickup Restaurant")
         expect(response.body).to have_selector("div", text: "123 Store Address, A1A 1A1, City")
       end
     end

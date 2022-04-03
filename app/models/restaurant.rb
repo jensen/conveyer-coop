@@ -17,7 +17,7 @@ class Restaurant < ApplicationRecord
   end
 
   def format_header_image
-    image = self.images.first
+    image = images.first
     "#{image.name}.#{image.extension}"
   end
 end
