@@ -6,18 +6,16 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-cuisine = Cuisine.create([
-                           { name: "Chicken" },
-                           { name: "Burgers" },
-                           { name: "Fast Food" },
-                           { name: "Desserts" },
-                           { name: "Bakery" },
-                           { name: "Pizza" },
-                           { name: "Salad" },
-                           { name: "Seafood" },
-                           { name: "Vegan" },
-                           { name: "Sandwiches" }
-                         ])
+chicken = Cuisine.create({ name: "Chicken" })
+burgers = Cuisine.create({ name: "Burgers" })
+fastfood = Cuisine.create({ name: "Fast Food" })
+desserts = Cuisine.create({ name: "Desserts" })
+bakery = Cuisine.create({ name: "Bakery" })
+pizza = Cuisine.create({ name: "Pizza" })
+salad = Cuisine.create({ name: "Salad" })
+seafood = Cuisine.create({ name: "Seafood" })
+vegan = Cuisine.create({ name: "Vegan" })
+sandwiches = Cuisine.create({ name: "Sandwiches" })
 
 hifive = Restaurant.create({
                              name: "Hi Five Chicken",
@@ -25,7 +23,7 @@ hifive = Restaurant.create({
                            })
 
 hifive.culinary_styles.create(
-  cuisine: cuisine.first
+  cuisine: chicken
 )
 
 hifive.images.create(
@@ -39,7 +37,7 @@ juke = Restaurant.create({
                          })
 
 juke.culinary_styles.create(
-  cuisine: cuisine.first
+  cuisine: chicken
 )
 
 juke.images.create(
@@ -136,7 +134,7 @@ juke_fried_chicken.menu_items.create(
   price: 3025
 )
 
-half_slab_ribs = juke_bbq_pork_ribs.menu_items.create(
+juke_bbq_pork_ribs.menu_items.create(
   name: "Half Slab",
   description: "Half slab of BBQ pork ribs smothered with Juke's famous BBQ sauce.",
   price: 1840
@@ -159,11 +157,11 @@ kfc = Restaurant.create(
 )
 
 kfc.culinary_styles.create(
-  cuisine: cuisine.first
+  cuisine: chicken
 )
 
 kfc.culinary_styles.create(
-  cuisine: cuisine.third
+  cuisine: fastfood
 )
 
 kfc.images.create(
@@ -176,20 +174,187 @@ wendys = Restaurant.create(
 )
 
 wendys.culinary_styles.create(
-  cuisine: cuisine.first
+  cuisine: chicken
 )
 
 wendys.culinary_styles.create(
-  cuisine: cuisine.second
+  cuisine: burgers
 )
 
 wendys.culinary_styles.create(
-  cuisine: cuisine.third
+  cuisine: fastfood
 )
 
 wendys.images.create(
   name: "203052",
   extension: "png"
+)
+
+dq = Restaurant.create({
+                         name: "Dairy Queen",
+                         cost: 1
+                       })
+
+dq.culinary_styles.create([
+                            { cuisine: chicken },
+                            { cuisine: burgers },
+                            { cuisine: fastfood },
+                            { cuisine: desserts },
+                          ])
+
+dq.images.create(
+  name: "a2aca04a-4f16-4902-b372-007a1b3ea5c4",
+  extension: "jpg"
+)
+
+lees = Restaurant.create({
+                           name: "Lee's Donuts",
+                           cost: 2
+                         })
+
+lees.culinary_styles.create([
+                              { cuisine: fastfood },
+                              { cuisine: desserts },
+                              { cuisine: bakery }
+                            ])
+
+lees.images.create(
+  name: "717473ba-8e04-42ef-8f91-5ea75a135fd2",
+  extension: "34"
+)
+
+panago = Restaurant.create({
+                             name: "Panago Pizza",
+                             cost: 2
+                           })
+
+panago.culinary_styles.create([
+                                { cuisine: fastfood },
+                                { cuisine: pizza }
+                              ])
+
+panago.images.create(
+  name: "f1c0945d-d2ad-47ea-b34e-390dec9f7dce",
+  extension: "jpg"
+)
+
+caesars = Restaurant.create({
+                              name: "Little Caesars Pizza",
+                              cost: 1
+                            })
+
+caesars.culinary_styles.create([
+                                 { cuisine: fastfood },
+                                 { cuisine: pizza }
+                               ])
+
+caesars.images.create(
+  name: "23faf021-07fa-42b5-86e2-06d44281de34",
+  extension: "png"
+)
+
+garden = Restaurant.create(
+  name: "Pizza Garden",
+  cost: 2
+)
+
+garden.culinary_styles.create([
+                                { cuisine: fastfood },
+                                { cuisine: pizza },
+                                { cuisine: salad }
+                              ])
+
+garden.images.create(
+  name: "6d1e0bde-027c-477f-8331-9d7d690dbaef",
+  extension: "jpg"
+)
+
+chopped = Restaurant.create(
+  name: "The Chopped Leaf",
+  cost: 1
+)
+
+chopped.culinary_styles.create([
+                                 { cuisine: salad }
+                               ])
+
+chopped.images.create(
+  name: "19003",
+  extension: "jpg"
+)
+
+chickpea = Restaurant.create(
+  name: "Chickpea",
+  cost: 2
+)
+
+chickpea.culinary_styles.create([
+                                  { cuisine: vegan }
+                                ])
+
+chickpea.images.create(
+  name: "82764",
+  extension: "jpg"
+)
+
+captains = Restaurant.create(
+  name: "The Captain's Boil",
+  cost: 2
+)
+
+captains.culinary_styles.create([
+                                  { cuisine: seafood }
+                                ])
+
+captains.images.create(
+  name: "19a64972-13cd-430b-9414-6558628e42cf",
+  extension: "jpeg"
+)
+
+boathouse = Restaurant.create(
+  name: "The Boathouse Restaurant",
+  cost: 3
+)
+
+boathouse.culinary_styles.create([
+                                   { cuisine: burgers },
+                                   { cuisine: seafood },
+                                   { cuisine: salad }
+                                 ])
+
+boathouse.images.create(
+  name: "9a225286-89c4-475b-98ff-c939db38a6c6",
+  extension: "jpg"
+)
+
+subway = Restaurant.create(
+  name: "Subway",
+  cost: 1
+)
+
+subway.culinary_styles.create([
+                                { cuisine: fastfood },
+                                { cuisine: sandwiches }
+                              ])
+
+subway.images.create(
+  name: "55699",
+  extension: "jpg"
+)
+
+paneformaggio = Restaurant.create(
+  name: "Pane E Formaggio",
+  cost: 2
+)
+
+paneformaggio.culinary_styles.create([
+                                       { cuisine: bakery },
+                                       { cuisine: sandwiches }
+                                     ])
+
+paneformaggio.images.create(
+  name: "66bca628-e24f-41c9-817e-a566b4e1dbbf",
+  extension: "jpg"
 )
 
 vancouver = City.create({ name: "Vancouver" })

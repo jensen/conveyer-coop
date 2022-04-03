@@ -1,3 +1,4 @@
-<section class="flex justify-center">
-  <%= render "cuisines/cuisines" %>
+<section class="sm:px-24 py-8 flex flex-col items-center">
+  <%= render partial: "cuisines/cuisines", locals: { cuisines: @cuisines } %>
+  <%= render partial: "restaurants/restaurants", locals: { restaurants: @restaurants } %>
 </section>

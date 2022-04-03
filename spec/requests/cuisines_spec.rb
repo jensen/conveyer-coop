@@ -3,7 +3,11 @@ require 'rails_helper'
 RSpec.describe "Cuisines", type: :request do
   describe "GET /cuisines/:slug" do
     it "returns a 200 status with the cuisines/show template" do
-      cuisine = create(:cuisine_with_restaurants)
+      cuisine = create(:cuisine, name: "Chicken", slug: "chicken", restaurants: [
+        create(:restaurant, images: [
+          create(:image)
+        ])
+      ])
 
       get cuisine_path(slug: cuisine.slug)
 

@@ -1,10 +1,4 @@
-<section class="px-24 py-8">
-  <ul class="flex flex-wrap justify-between">
-    <% @cuisine.restaurants.each do |restaurant| %>
-      <li>
-        <%= link_to render(partial: 'restaurants/preview', locals: { restaurant: restaurant }),
-                    restaurant_path(slug: restaurant.slug) %>
-      </li>
-    <% end %>
-  </ul>
+<section class="sm:px-24 py-8 flex flex-col items-center">
+  <%= render partial: "cuisines/cuisines", locals: { cuisines: @cuisines } %>
+  <%= render partial: "restaurants/restaurants", locals: { restaurants: @cuisine.restaurants } %>
 </section>

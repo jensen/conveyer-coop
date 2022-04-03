@@ -1,0 +1,5 @@
+<li>
+  <%= link_to render(partial: 'restaurants/preview', locals: { restaurant: restaurant }),
+              restaurant_path(slug: restaurant.slug),
+              data: { turbo_frame: "_top" } %>
+</li>

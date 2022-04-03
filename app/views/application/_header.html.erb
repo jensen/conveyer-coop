@@ -1,10 +1,10 @@
 <header class="border-b border-grey-400">
-  <div class="<%= "p-4 flex justify-between #{ logged_in? ? "bg-white" : "bg-red-800" }" %>">
-    <div class="w-64"></div>
-    <div class="flex-1 flex justify-center items-center">
+  <div class="<%= "p-4 flex flex-col sm:flex-row items-center space-y-2 sm:justify-between #{ logged_in? ? "bg-white" : "bg-red-800" }" %>">
+    <div class="sm:w-64"></div>
+    <div class="flex-1 flex justify-center items-center space-y-2">
       <%= link_to render(partial: "logo"), root_path %>
     </div>
-    <div class="w-64 flex justify-end">
+    <div class="sm:w-64 flex justify-end">
       <% unless current_page?(login_path) or current_page?(register_path) %>
         <% if logged_in? %>
           <%= render partial: "carts/preview", locals: { cart: current_cart } %>
