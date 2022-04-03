@@ -16,7 +16,7 @@ RSpec.describe "orders/new", type: :view do
     expect(rendered).to have_selector "input#order_delivery_false[type='radio'][name='order[delivery]'][value='false']"
   end
 
-  it "renders an address" do
+  it "renders an restaurant name and address when it is for pickup" do
     line_item = create(:line_item,
                        menu_item: create(:menu_item,
                        menu_category: create(:menu_category,
@@ -29,6 +29,17 @@ RSpec.describe "orders/new", type: :view do
 
     expect(rendered).to have_selector "legend", text: "Address"
     expect(rendered).to have_selector "h3", text: "Restaurant"
+    expect(rendered).to have_selector "input#order_address[type='hidden'][name='order[address]'][value='123 Order Address']", visible: false
+    expect(rendered).to have_selector "div", text: "123 Order Address"
+  end
+
+  it "renders only an address when there are no items from a restaurant" do
+    assign(:cart, create(:cart))
+    assign(:order, build(:order, delivery: false, address: "123 Order Address"))
+
+    render
+
+    expect(rendered).to have_selector "legend", text: "Address"
     expect(rendered).to have_selector "input#order_address[type='hidden'][name='order[address]'][value='123 Order Address']", visible: false
     expect(rendered).to have_selector "div", text: "123 Order Address"
   end
