@@ -9,7 +9,7 @@
 cuisine = Cuisine.create([
                            { name: "Chicken" },
                            { name: "Burgers" },
-                           { name: "Fast Food"},
+                           { name: "Fast Food" },
                            { name: "Desserts" },
                            { name: "Bakery" },
                            { name: "Pizza" },
@@ -212,3 +212,10 @@ kfc.stores.create([{
                    }])
 
 user = User.create({ email: "test@user.com", password: "123" })
+
+Profile.create(
+  address: "123 User Address",
+  postal_code: "A1A 1A1",
+  city: vancouver,
+  user: user
+)
