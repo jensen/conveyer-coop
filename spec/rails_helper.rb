@@ -14,7 +14,13 @@ end
 
 require 'rspec/rails'
 require 'capybara/rails'
+require 'support/database_cleaner'
 
+Capybara.register_driver :selenium_chrome do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+
+Capybara.javascript_driver = :selenium_chrome
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -48,7 +54,7 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
