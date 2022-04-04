@@ -7,7 +7,7 @@
           <%= render partial: "carts/checkout", locals: { total: @cart.total, disabled: @cart.empty? } %>
         <% end %>
       </section>
-      <%= render @cart %>
+      <%= render partial: "carts/cart", locals: { line_items: @cart.line_items } %>
     </div>
   </section>
 <% end %>

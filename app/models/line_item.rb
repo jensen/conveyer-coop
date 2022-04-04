@@ -1,6 +1,7 @@
 class LineItem < ApplicationRecord
   belongs_to :menu_item
   belongs_to :cart
+  belongs_to :order, optional: true
 
   has_one :menu_category, through: :menu_item
   has_one :restaurant, through: :menu_category

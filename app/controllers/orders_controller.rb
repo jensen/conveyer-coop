@@ -9,8 +9,12 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
     @cart = current_cart
+    @order = Order.new(order_params)
+
+    @cart.line_items.each do |item|
+      @order.line_items << item
+    end
 
     if @order.save
       reset_cart

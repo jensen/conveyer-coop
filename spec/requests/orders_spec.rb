@@ -42,9 +42,20 @@ RSpec.describe "Orders", type: :request do
 
   describe "POST /orders" do
     it "redirects a user to the order path" do
+      menu_category = create(:menu_category, restaurant: create(:restaurant))
+      
+      cart = create(:cart, line_items: [
+        create(:line_item, menu_item: build(:menu_item, name: "First Item", menu_category: menu_category)),
+        create(:line_item, menu_item: build(:menu_item, name: "Second Item", menu_category: menu_category))
+      ])
+
+      allow_any_instance_of(CartHelper).to receive(:current_cart) { cart }
+
       post orders_path, params: { order: attributes_for(:order) }
 
       expect(response).to redirect_to(order_path(Order.last))
+
+      expect(Order.last.line_items.count).to eq 2
     end
 
     it "returns a 429 with the orders/new template" do
