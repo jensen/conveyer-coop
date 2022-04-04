@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :restaurant do
-    name { "Restaurant" }
-    slug { "restaurant" }
+    name { "Default Restaurant" }
+    slug { "default-restaurant" }
     cost { 2 }
   end
 end

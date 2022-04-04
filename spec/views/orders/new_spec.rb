@@ -1,9 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe "orders/new", type: :view do
+  let(:restaurant) { build(:restaurant, name: "Restaurant") }
+  let(:menu_category) { build(:menu_category, restaurant: restaurant) }
+  let(:menu_items) { [
+    build(:menu_item, name: "Item 1", menu_category: menu_category),
+    build(:menu_item, name: "Item 2", menu_category: menu_category)
+  ] }
+  let(:line_items) {
+    menu_items.map do |menu_item|
+      create(:line_item, menu_item: menu_item)
+    end
+  }
+  let(:cart) { build(:cart, line_items: line_items) }
+  let(:order) { build(:order) }
+
   it "renders options for deliver or pickup" do
-    assign(:order, build(:order))
-    assign(:cart, build(:cart))
+    assign(:cart, cart)
+    assign(:order, order)
 
     render
 
@@ -17,12 +31,8 @@ RSpec.describe "orders/new", type: :view do
   end
 
   it "renders an restaurant name and address when it is for pickup" do
-    line_item = create(:line_item,
-                       menu_item: create(:menu_item,
-                       menu_category: create(:menu_category,
-                       restaurant: create(:restaurant, name: "Restaurant"))))
 
-    assign(:cart, create(:cart, line_items: [line_item]))
+    assign(:cart, cart)
     assign(:order, build(:order, delivery: false, address: "123 Order Address"))
 
     render
@@ -34,7 +44,7 @@ RSpec.describe "orders/new", type: :view do
   end
 
   it "renders only an address when there are no items from a restaurant" do
-    assign(:cart, create(:cart))
+    assign(:cart, build(:cart, line_items: []))
     assign(:order, build(:order, delivery: false, address: "123 Order Address"))
 
     render
@@ -45,11 +55,8 @@ RSpec.describe "orders/new", type: :view do
   end
 
   it "renders an order summary" do
-    assign(:cart, build(:cart, line_items: [
-      build_stubbed(:line_item, menu_item: build_stubbed(:menu_item, name: "Item 1")),
-      build_stubbed(:line_item, menu_item: build_stubbed(:menu_item, name: "Item 2"))
-    ]))
-    assign(:order, build(:order))
+    assign(:cart, cart)
+    assign(:order, order)
 
     render
 

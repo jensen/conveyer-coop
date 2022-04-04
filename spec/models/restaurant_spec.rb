@@ -4,10 +4,12 @@ describe Restaurant do
   it_behaves_like "sluggable"
 
   describe "#format_header_image" do
-    it "combines the name and extension to get the header_image" do
-      restaurant = build(:restaurant, images: [ build(:image) ])
+    let(:restaurant) { build(:restaurant, images: [
+      build(:image, name: "test", extension: "jpg")
+    ]) }
 
-      expect(restaurant.format_header_image).to eq "#{restaurant.images.first.name}.#{restaurant.images.first.extension}"
+    it "combines the name and extension to get the header_image" do
+      expect(restaurant.format_header_image).to eq "test.jpg"
     end
   end
 end

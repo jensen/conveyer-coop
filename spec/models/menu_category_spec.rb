@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe MenuCategory, type: :model do
-  it "is valid with valid attributes" do
-    category = build(:menu_category)
+  let(:menu_category) { build(:menu_category) }
 
-    expect(category).to be_valid
+  it "is valid with valid attributes" do
+    expect(menu_category).to be_valid
   end
 end

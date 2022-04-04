@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :modification_option do
-    sequence(:name) { |n| "Modification Option #{n}" }
+    name { "Default Modification Option" }
     price { 200 }
     multiple { false }
     modification

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CartHelper, type: :helper do
   let(:user) { create(:user) }
+  let(:cart) { create(:cart, user: user) }
 
   context "current_cart" do
     it "should create a new cart for a new user" do
@@ -14,7 +15,7 @@ RSpec.describe CartHelper, type: :helper do
     end
 
     it "should return the existing cart for a returning user" do
-      session[:cart_id] = create(:cart, user: user).id
+      session[:cart_id] = cart.id
 
       cart = helper.current_cart
 
@@ -26,8 +27,6 @@ RSpec.describe CartHelper, type: :helper do
 
   context "reset_cart" do
     it "should create a new cart and update the session" do
-      cart = create(:cart, user: user)
-
       session[:cart_id] = cart.id
       session[:user_id] = user.id
 

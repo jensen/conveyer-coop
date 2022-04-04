@@ -2,14 +2,14 @@ require 'rails_helper'
 
 RSpec.describe "Cuisines", type: :request do
   describe "GET /cuisines/:slug" do
-    it "returns a 200 status with the cuisines/show template" do
-      cuisine = create(:cuisine, name: "Chicken", slug: "chicken", restaurants: [
-        create(:restaurant, images: [
-          create(:image)
-        ])
+    let!(:cuisine) { create(:cuisine, name: "Chicken", slug: "chicken", restaurants: [
+      create(:restaurant, images: [
+        create(:image)
       ])
+    ]) }
 
-      get cuisine_path(slug: cuisine.slug)
+    it "returns a 200 status with the cuisines/show template" do
+      get cuisine_path(slug: "chicken")
 
       expect(response).to have_http_status(:ok)
       expect(response).to render_template(:show)

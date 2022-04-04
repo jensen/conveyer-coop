@@ -33,14 +33,18 @@ RSpec.describe User, type: :model do
   end
 
   context "has a profile" do
-    let(:user) { build(:user, profile: build(:profile)) }
+    let(:profile) { build(:profile,
+                          address: "123 User Address",
+                          postal_code: "A1A 1A1",
+                          city: build(:city, name: "City")) }
+    let(:user) { build(:user, profile: profile) }
 
     it "has an address" do
       expect(user.profile.address).to eq "123 User Address"
     end
 
     it "has a postal code" do
-      expect(user.profile.postal_code).to eq "H0H 0H0"
+      expect(user.profile.postal_code).to eq "A1A 1A1"
     end
 
     it "has a city" do

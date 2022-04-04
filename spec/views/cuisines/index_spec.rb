@@ -2,12 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "cuisines/index", type: :view do
   it "renders a list of cuisines" do
-    chicken = build(:cuisine, name: "Chicken", slug: "chicken")
-    burgers = build(:cuisine, name: "Burgers", slug: "chicken")
-
     cuisines = [
-      chicken,
-      burgers
+      build(:cuisine, name: "Chicken", slug: "chicken"),
+      build(:cuisine, name: "Burgers", slug: "burgers")
     ]
 
     restaurants = [
@@ -21,7 +18,7 @@ RSpec.describe "cuisines/index", type: :view do
 
     render
 
-    expect(rendered).to have_link 'Chicken', href: cuisine_path(slug: chicken.slug)
-    expect(rendered).to have_link 'Burgers', href: cuisine_path(slug: burgers.slug)
+    expect(rendered).to have_link 'Chicken', href: cuisine_path(slug: "chicken")
+    expect(rendered).to have_link 'Burgers', href: cuisine_path(slug: "burgers")
   end
 end

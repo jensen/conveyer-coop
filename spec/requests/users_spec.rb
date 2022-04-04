@@ -13,12 +13,12 @@ RSpec.describe "Cuisines", type: :request do
   describe "POST /users" do
     it "should create a new user" do
       expect {
-        post users_path, params: { user: { email: "test@user.com", password: "abc", password_confirmation: "abc" } }
+        post users_path, params: { user: attributes_for(:user) }
       }.to change(User, :count).by(1)
     end
 
     it "should redirect to root when created successfully" do
-      post users_path, params: { user: { email: "test@user.com", password: "abc", password_confirmation: "abc" } }
+      post users_path, params: { user: attributes_for(:user) }
 
       expect(response).to redirect_to(root_path)
     end

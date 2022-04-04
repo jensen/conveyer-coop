@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :cuisine do
-    name { "Cuisine" }
-    slug { "cuisine" }
+    name { "Default Cuisine" }
+    slug { "default-cuisine" }
   end
 end

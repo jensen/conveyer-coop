@@ -2,7 +2,12 @@ require 'rails_helper'
 
 RSpec.describe "Orders", type: :request do
   describe "GET /orders/new" do
-    let(:cart) { create(:cart, user: create(:user, profile: create(:profile))) }
+    let(:profile) { build(:profile,
+                          address: "123 User Address",
+                          postal_code: "A1A 1A1",
+                          city: build(:city, name: "City")) }
+    let(:user) { build(:user, profile: profile) }
+    let(:cart) { build(:cart, user: user) }
 
     it "returns a 200 with the orders/new template" do
       allow_any_instance_of(CartHelper).to receive(:current_cart) { cart }
@@ -19,15 +24,19 @@ RSpec.describe "Orders", type: :request do
 
         get new_order_path
 
-        expect(response.body).to have_selector("div", text: "123 User Address, H0H 0H0, City")
+        expect(response.body).to have_selector("div", text: "123 User Address, A1A 1A1, City")
       end
     end
 
     context "pickup" do
-      let(:store) { create(:store, restaurant: create(:restaurant, name: "Pickup Restaurant")) }
-      let(:menu_category) { create(:menu_category, restaurant: store.restaurant) }
-      let(:menu_item) { create(:menu_item, menu_category: menu_category) }
-      let(:cart) { create(:cart, line_items: [create(:line_item, menu_item: menu_item)]) }
+      let(:store) { create(:store,
+                           address: "123 Store Address",
+                           postal_code: "A1A 1A1",
+                           city: build(:city, name: "City"),
+                           restaurant: build(:restaurant, name: "Pickup Restaurant")) }
+      let(:menu_category) { build(:menu_category, restaurant: store.restaurant) }
+      let(:menu_item) { build(:menu_item, menu_category: menu_category) }
+      let(:cart) { build(:cart, line_items: [create(:line_item, menu_item: menu_item)]) }
 
       it "defaults to restaurant address" do
         allow_any_instance_of(CartHelper).to receive(:current_cart) { cart }
@@ -41,21 +50,25 @@ RSpec.describe "Orders", type: :request do
   end
 
   describe "POST /orders" do
-    it "redirects a user to the order path" do
-      menu_category = create(:menu_category, restaurant: create(:restaurant))
-      
-      cart = create(:cart, line_items: [
-        create(:line_item, menu_item: build(:menu_item, name: "First Item", menu_category: menu_category)),
-        create(:line_item, menu_item: build(:menu_item, name: "Second Item", menu_category: menu_category))
-      ])
+    context "completing an order" do
+      let(:menu_category) { build(:menu_category, restaurant: build(:restaurant)) }
+      let(:line_items) { [
+        build(:line_item, menu_item: build(:menu_item, name: "First Item", menu_category: menu_category)),
+        build(:line_item, menu_item: build(:menu_item, name: "Second Item", menu_category: menu_category))
+      ] }
+      let(:cart) {
+        build(:cart, line_items: line_items)
+      }
 
-      allow_any_instance_of(CartHelper).to receive(:current_cart) { cart }
+      it "redirects a user to the order path" do
+        allow_any_instance_of(CartHelper).to receive(:current_cart) { cart }
 
-      post orders_path, params: { order: attributes_for(:order) }
+        post orders_path, params: { order: attributes_for(:order) }
 
-      expect(response).to redirect_to(order_path(Order.last))
+        expect(response).to redirect_to(order_path(Order.last))
 
-      expect(Order.last.line_items.count).to eq 2
+        expect(Order.last.line_items.count).to eq 2
+      end
     end
 
     it "returns a 429 with the orders/new template" do

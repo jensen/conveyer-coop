@@ -1,6 +1,8 @@
 RSpec.describe "orders/show", type: :view do
+  let(:order) { build_stubbed(:order) }
+
   it "renders a thank you message" do
-    assign(:order, build(:order))
+    assign(:order, order)
 
     render
 
@@ -8,8 +10,6 @@ RSpec.describe "orders/show", type: :view do
   end
 
   it "renders the order identifier" do
-    order = build_stubbed(:order)
-
     assign(:order, order)
 
     render
@@ -34,7 +34,7 @@ RSpec.describe "orders/show", type: :view do
   end
 
   it "renders a call to action for ordering again" do
-    assign(:order, build(:order))
+    assign(:order, order)
 
     render
 
