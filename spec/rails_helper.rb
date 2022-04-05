@@ -12,6 +12,7 @@ SimpleCov.start "rails" do
   enable_coverage :branch
 end
 
+require "view_component/test_helpers"
 require 'rspec/rails'
 require 'capybara/rails'
 require 'support/database_cleaner'
@@ -80,4 +81,6 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.include Capybara::RSpecMatchers, type: :request
+  config.include Capybara::RSpecMatchers, type: :component
+  config.include ViewComponent::TestHelpers, type: :component
 end
