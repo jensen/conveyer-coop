@@ -11,7 +11,7 @@
       <% end %>
     </h3>
     <h3 class="text-sm text-gray-700">Order ID: #<%= @order.id %></h3>
-    <%= render partial: "carts/cart", locals: { line_items: @order.line_items, readonly: true } %>
+    <%= render_component(LineItemsComponent, line_items: @order.line_items, readonly: true) %>
     <p class="italic font-bold text-xl">Still Hungry?</p>
     <%= link_to "Order Again", root_path, class: "w-fit btn--red" %>
   </div>

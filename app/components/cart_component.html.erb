@@ -1,0 +1,15 @@
+<%= turbo_frame_tag LineItem.new do %>
+  <% if render_empty? %>
+    <div class="py-12 flex flex-col items-center">
+      <h3 class="text-sm text-gray-500">Your cart is empty</h3>
+      <h3 class="text-sm text-gray-500">
+        <%= link_to "Add items to get started",
+                    root_path,
+                    data: { turbo_frame: "_top" },
+                    class: "font-bold text-red-600 hover:text-red-700" %>
+      </h3>
+    </div>
+  <% else %>
+    <%= render_component(LineItemsComponent, line_items: @line_items) %>
+  <% end %>
+<% end %>
