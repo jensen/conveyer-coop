@@ -11,7 +11,6 @@ export default class extends Controller {
   }
 
   submitEnd(event) {
-    console.log(event.detail)
     if (event.detail.success) {
       this.close()
     }
