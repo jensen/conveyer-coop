@@ -15,7 +15,7 @@
     <%= turbo_frame_tag "modal" %>
     <%= turbo_frame_tag "cart" %>
     <main class="h-full">
-      <%= render "header" %>
+      <%= render_component(HeaderComponent) %>
       <%= yield %>
     </main>
   </body>

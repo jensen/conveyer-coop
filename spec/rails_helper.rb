@@ -87,6 +87,7 @@ RSpec.configure do |config|
   config.include Capybara::RSpecMatchers, type: :request
   config.include Capybara::RSpecMatchers, type: :component
   config.include ViewComponent::TestHelpers, type: :component
-
+  
   config.include Rails.application.routes.url_helpers, type: :component
+  config.include ActionView::Helpers::UrlHelper, type: :component
 end
