@@ -64,9 +64,8 @@ describe "the ordering process", type: :feature do
 
       expect(page).to have_selector "a[data-test-id='cart']", text: "1"
 
-      within "turbo-frame#cart-preview>#cart-preview" do
-        click_link "1"
-      end
+      # cart preview has `data-test-id="cart"`, this locator is the test id
+      click_link "cart"
 
       expect(page).to have_button "Checkout"
       click_button "Checkout"

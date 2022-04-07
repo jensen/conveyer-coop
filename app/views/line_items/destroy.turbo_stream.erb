@@ -1,6 +1,6 @@
-<%= turbo_stream.update "cart-preview", partial: "carts/preview", locals: { cart: current_cart } %>
 <%= turbo_stream.update "cart-checkout", partial: "carts/checkout", locals: { total: current_cart.total, disabled: current_cart.empty? }%>
 <%= turbo_stream.update "cart-pay", partial: "orders/pay", locals: { total: current_cart.total, disabled: current_cart.empty? }%>
+<%= turbo_stream.update "cart-count", current_cart.item_count %>
 <%= turbo_stream.remove dom_id(@line_item) %>
 <% unless current_cart.line_items.exists? %>
   <%= turbo_stream.update LineItem.new, render_component(CartComponent, line_items: current_cart.line_items) %>

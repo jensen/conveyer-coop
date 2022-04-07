@@ -1,4 +1,4 @@
 <%= turbo_stream.update "modal", "" %>
 <% if current_cart %>
-  <%= turbo_stream.update "cart-preview", partial: "carts/preview", locals: { cart: current_cart } %>
+  <%= turbo_stream.update "cart-count", current_cart.item_count %>
 <% end %>
