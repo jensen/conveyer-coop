@@ -6,10 +6,17 @@
       <h3 class="my-2 text-sm text-gray-700"><%= @line_item.menu_item.description %></h3>
       <%= render @line_item.menu_item.modifications %>
       <footer class="flex justify-end">
-        <%= button_to "Add to cart - #{format_price @line_item.menu_item.price}",
-                      menu_item_line_items_path(@line_item.menu_item),
+        <% if logged_in? %>
+          <%= button_to "Add to cart - #{format_price @line_item.menu_item.price}",
+                        menu_item_line_items_path(@line_item.menu_item),
+                        class: "px-4 py-2 bg-red-600 rounded-full text-white font-semibold",
+                        params: { line_item: { menu_item_id: @line_item.menu_item.id, quantity: 1 } } %>
+        <% else %>
+          <%= link_to "Login to Order",
+                      login_path,
                       class: "px-4 py-2 bg-red-600 rounded-full text-white font-semibold",
-                      params: { line_item: { menu_item_id: @line_item.menu_item.id, quantity: 1 } } %>
+                      data: { turbo_frame: "_top" } %>
+        <% end %>
       </footer>
     </div>
   </section>

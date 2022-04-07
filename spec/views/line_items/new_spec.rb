@@ -4,6 +4,30 @@ RSpec.describe "line_items/new", type: :view do
   let(:menu_item) { build_stubbed(:menu_item, name: "Menu Item", description: "Description.", price: 775) }
   let(:line_item) { build_stubbed(:line_item, menu_item: menu_item) }
 
+  context "user is authenticated" do
+    it "renders an add to cart button" do
+      allow_any_instance_of(SessionsHelper).to receive(:logged_in?) { true }
+
+      assign(:line_item, line_item)
+
+      render
+
+      expect(rendered).to match(/Add to cart - \$7.75/)
+    end
+  end
+
+  context "user is not authenticated" do
+    it "renders a login to order button" do
+      allow_any_instance_of(SessionsHelper).to receive(:logged_in?) { false }
+
+      assign(:line_item, line_item)
+
+      render
+
+      expect(rendered).to match(/Login to Order/)
+    end
+  end
+
   it "renders a menu item" do
     assign(:line_item, line_item)
 
@@ -11,14 +35,6 @@ RSpec.describe "line_items/new", type: :view do
 
     expect(rendered).to match(/Menu Item/)
     expect(rendered).to match(/Description./)
-  end
-
-  it "renders an add to cart button" do
-    assign(:line_item, line_item)
-
-    render
-
-    expect(rendered).to match(/Add to cart - \$7.75/)
   end
 
   context "with customizations" do
