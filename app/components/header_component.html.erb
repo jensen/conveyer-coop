@@ -1,8 +1,8 @@
 <header class="border-b border-grey-400">
-  <div class="<%= "p-4 flex flex-col sm:flex-row items-center space-y-2 sm:justify-between " +
+  <div class="<%= "p-4 flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:justify-between " +
                     "#{ show_authed? ? "bg-white" : "bg-red-800" }" %>">
     <div class="sm:w-64"></div>
-    <div class="flex-1 flex justify-center items-center space-y-2">
+    <div class="flex-1 flex justify-center items-center">
       <%= link_to render(partial: "logo"), root_path %>
     </div>
     <div class="sm:w-64 flex justify-end">
