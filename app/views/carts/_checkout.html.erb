@@ -1,9 +1,9 @@
-
-  <%= button_to new_order_path,
-                method: :get,
-                data: { turbo_frame: "_top" },
-                class: "btn--red",
-                disabled: disabled do %>
-    <span class="font-bold">Checkout</span>
-    <span class="font-semibold"><%= format_price total %></span>
+<%= button_to new_order_path,
+              method: :get,
+              data: { turbo_frame: "_top" },
+              class: "btn--red",
+              disabled: disabled do %>
+  <%= render_component(PriceButtonComponent, total: total) do %>
+    Checkout
   <% end %>
+<% end %>

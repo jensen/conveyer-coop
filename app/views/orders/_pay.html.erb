@@ -1,0 +1,9 @@
+<%= fields_for @order do |form| %>
+  <%= form.button data: { turbo_frame: "_top" },
+                  class: "btn--red",
+                  disabled: disabled do %>
+    <%= render_component(PriceButtonComponent, total: total) do %>
+      Pay
+    <% end %>
+  <% end %>
+<% end %>

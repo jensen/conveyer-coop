@@ -44,13 +44,8 @@
     </div>
 
     <div class="w-full">
-      <%= turbo_frame_tag "cart-checkout" do %>
-        <%= form.button disabled: @cart.line_items.empty?,
-                        data: { turbo_frame: "_top" },
-                        class: "btn--red" do %>
-          <span class="font-bold">Checkout</span>
-          <span class="font-semibold"><%= format_price @cart.total %></span>
-        <% end %>
+      <%= turbo_frame_tag "cart-pay" do %>
+        <% render partial: "orders/pay", locals: { total: @cart.total, disabled: @cart.empty? } %>
       <% end %>
     </div>
   <% end %>

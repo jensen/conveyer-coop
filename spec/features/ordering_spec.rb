@@ -81,7 +81,7 @@ describe "the ordering process", type: :feature do
       expect(page).to have_content "Chickpea"
       expect(page).to have_content "123 Store Address"
 
-      click_button "Checkout"
+      click_button "Pay"
 
       expect(page).to have_content "Thank you for your order"
       expect(page).to have_content "The order will be ready for pickup soon at"
