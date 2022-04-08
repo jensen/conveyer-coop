@@ -7,4 +7,8 @@ class LineItem < ApplicationRecord
   has_one :restaurant, through: :menu_category
 
   validates :quantity, numericality: { greater_than: 0, less_than: 100 }
+
+  def total
+    quantity * menu_item.price
+  end
 end

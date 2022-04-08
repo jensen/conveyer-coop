@@ -13,7 +13,7 @@
         <div class="flex-1">
           <h2 class="font-bold text-xs text-gray-800"><%= line_item.menu_item.name %></h2>
           <h4 class="font-light text-xs text-gray-500">Sides, sauces, etc.</h4>
-          <h3 class="font-semibold text-sm text-gray-800"><%= format_price line_item.menu_item.price %></h3>
+          <h3 class="font-semibold text-sm text-gray-800"><%= format_price line_item.total %></h3>
         </div>
         <div class="pl-8 pr-4">
           <% if render_remove? %>

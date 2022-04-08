@@ -44,7 +44,7 @@ RSpec.describe "carts/show", type: :view do
       expect(rendered).to have_selector("li h3", text: "$10.95")
       expect(rendered).to have_selector("li div span", text: "2")
       expect(rendered).to have_selector("li h2", text: "Menu Item 2")
-      expect(rendered).to have_selector("li h3", text: "$7.50")
+      expect(rendered).to have_selector("li h3", text: "$15.00")
     end
   end
 end

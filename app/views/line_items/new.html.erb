@@ -7,10 +7,12 @@
       <%= render @line_item.menu_item.modifications %>
       <footer class="flex justify-end">
         <% if logged_in? %>
-          <%= button_to "Add to cart - #{format_price @line_item.menu_item.price}",
-                        menu_item_line_items_path(@line_item.menu_item),
-                        class: "px-4 py-2 bg-red-600 rounded-full text-white font-semibold",
-                        params: { line_item: { menu_item_id: @line_item.menu_item.id, quantity: 1 } } %>
+          <%= form_with model: @line_item, url: [@line_item.menu_item, @line_item], class: "space-x-2" do |form| %>
+            <%= form.number_field :quantity, value: 1, max: 9, min: 1, pattern: "[0-9]*",
+                                  class: "w-16 text-center border-0 rounded-md w-content bg-gray-100" %>
+            <%= form.submit "Add to cart - #{format_price @line_item.menu_item.price}",
+                            class: "px-4 py-2 bg-red-600 rounded-full text-white font-semibold hover:cursor-pointer" %>
+          <% end %>
         <% else %>
           <%= link_to "Login to Order",
                       login_path,

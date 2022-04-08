@@ -1,4 +1,6 @@
 class LineItemsController < ApplicationController
+  before_action :authenticate_user, only: [:create, :destroy]
+
   def new
     @line_item = current_cart.line_items.build(new_line_item_params)
   end
