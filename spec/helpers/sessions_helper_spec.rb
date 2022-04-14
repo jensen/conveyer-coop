@@ -6,21 +6,13 @@ RSpec.describe SessionsHelper, type: :helper do
   end
 
   it "creates a session on login" do
-    expect(helper.logged_in?).to be(false)
-
-    helper.log_in(@user)
-
-    expect(helper.logged_in?).to be(true)
+    expect { helper.log_in(@user) }.to change(helper, :logged_in?).from(false).to(true)
   end
 
   it "destroys a session on logout" do
     helper.log_in(@user)
 
-    expect(helper.logged_in?).to be(true)
-
-    helper.log_out
-
-    expect(helper.logged_in?).to be(false)
+    expect { helper.log_out }.to change(helper, :logged_in?).from(true).to(false)
   end
 
   context "#current_user" do
@@ -30,6 +22,7 @@ RSpec.describe SessionsHelper, type: :helper do
 
     it "should provide the current user after login" do
       helper.log_in(@user)
+
       expect(helper.current_user).to eq(@user)
     end
   end
@@ -37,7 +30,6 @@ RSpec.describe SessionsHelper, type: :helper do
   context "#current_user?" do
     it "is the current user" do
       helper.log_in(@user)
-
 
       expect(helper.current_user?(@user)).to eq(true)
     end
