@@ -19,7 +19,7 @@ RSpec.describe "Sessions", type: :request do
   end
 
   describe "POST /sessions" do
-    let! (:user) { create(:user, email: "user@test.com") }
+    let!(:user) { create(:user, email: "user@test.com") }
 
     context "valid email and password" do
       it "returns a 200 status and redirects the user" do

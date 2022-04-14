@@ -80,7 +80,7 @@ RSpec.describe "Orders", type: :request do
   end
 
   describe "GET /orders/:id" do
-    let (:order) { create(:order) }
+    let(:order) { create(:order) }
 
     it "returns a 200 with the orders/show template" do
       get order_path(order)

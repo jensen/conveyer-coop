@@ -14,7 +14,7 @@ RSpec.describe HeaderComponent, type: :component do
           "/login"
         ) { false }
 
-        render_inline(described_class.new())
+        render_inline(described_class.new)
 
         expect(rendered_component).to have_link "Sign In"
         expect(rendered_component).to have_link "Sign Up"
@@ -30,7 +30,7 @@ RSpec.describe HeaderComponent, type: :component do
         allow_any_instance_of(ActionView::Helpers::UrlHelper).to receive(:current_page?).with(
           "/register"
         ) { true }
-        render_inline(described_class.new())
+        render_inline(described_class.new)
 
         expect(rendered_component).not_to have_link "Sign In"
         expect(rendered_component).not_to have_link "Sign Up"
@@ -47,7 +47,7 @@ RSpec.describe HeaderComponent, type: :component do
           "/login"
         ) { true }
 
-        render_inline(described_class.new())
+        render_inline(described_class.new)
 
         expect(rendered_component).not_to have_link "Sign In"
         expect(rendered_component).not_to have_link "Sign Up"
@@ -76,7 +76,7 @@ RSpec.describe HeaderComponent, type: :component do
           "/login"
         ).and_return(false)
 
-        render_inline(described_class.new())
+        render_inline(described_class.new)
 
         expect(rendered_component).not_to have_link "Sign In"
         expect(rendered_component).not_to have_link "Sign Up"
@@ -91,7 +91,7 @@ RSpec.describe HeaderComponent, type: :component do
           build_stubbed(:cart, user: user)
         }
 
-        render_inline(described_class.new())
+        render_inline(described_class.new)
 
         expect(rendered_component).to have_selector("a[data-test-id=cart]", text: "0")
       end
@@ -103,7 +103,7 @@ RSpec.describe HeaderComponent, type: :component do
 
         allow_any_instance_of(CartHelper).to receive(:current_cart) { nil }
 
-        render_inline(described_class.new())
+        render_inline(described_class.new)
 
         expect(rendered_component).not_to have_selector("a[data-test-id=cart]", text: "0")
       end

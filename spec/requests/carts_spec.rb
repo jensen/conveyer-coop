@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Carts", type: :request do
   describe "GET /carts/:id" do
-    let (:cart) { create(:cart, line_items: []) }
+    let(:cart) { create(:cart, line_items: []) }
 
     it "returns a 200 with the carts/show template" do
       get cart_url(cart)
