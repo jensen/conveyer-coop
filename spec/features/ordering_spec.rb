@@ -36,7 +36,7 @@ describe "the ordering process", type: :feature do
       # temporarily change the display type to "block" to click the link
       page.execute_script("document.querySelector('a.contents').style.display = 'block'")
       click_link 'Vegan', href: "/cuisines/vegan"
-      page.execute_script("document.querySelector('a.contents').style.height = 'contents'")
+      page.execute_script("document.querySelector('a.contents').style.display = 'contents'")
 
       expect(page).to have_current_path(cuisine_path(slug: @cuisine.slug))
 
