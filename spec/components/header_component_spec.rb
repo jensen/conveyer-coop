@@ -6,14 +6,6 @@ RSpec.describe HeaderComponent, type: :component do
   context "user is not authenticated " do
     context "while visiting non auth page" do
       it "renders the sign in and sign up buttons" do
-        allow_any_instance_of(ActionView::Helpers::UrlHelper).to receive(:current_page?).with(
-          "/register"
-        ) { false }
-
-        allow_any_instance_of(ActionView::Helpers::UrlHelper).to receive(:current_page?).with(
-          "/login"
-        ) { false }
-
         render_inline(described_class.new)
 
         expect(rendered_component).to have_link "Sign In"
@@ -30,6 +22,7 @@ RSpec.describe HeaderComponent, type: :component do
         allow_any_instance_of(ActionView::Helpers::UrlHelper).to receive(:current_page?).with(
           "/register"
         ) { true }
+
         render_inline(described_class.new)
 
         expect(rendered_component).not_to have_link "Sign In"

@@ -10,9 +10,6 @@ RSpec.describe "LineItems", type: :request do
 
     context "user is not authenticated" do
       it "returns an unauthorized status code" do
-        allow_any_instance_of(SessionsHelper).to receive(:current_user) { nil }
-        allow_any_instance_of(CartHelper).to receive(:current_cart) { nil }
-
         post menu_item_line_items_path(menu_item), params: { line_item: { quantity: 1 } }
 
         expect(response).to have_http_status(:unauthorized)

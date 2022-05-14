@@ -6,7 +6,7 @@ RSpec.describe "line_items/new", type: :view do
 
   context "user is authenticated" do
     it "renders an add to cart button" do
-      allow_any_instance_of(SessionsHelper).to receive(:logged_in?) { true }
+      allow(view).to receive(:logged_in?) { true }
 
       assign(:line_item, line_item)
 
@@ -19,7 +19,7 @@ RSpec.describe "line_items/new", type: :view do
 
   context "user is not authenticated" do
     it "renders a login to order button" do
-      allow_any_instance_of(SessionsHelper).to receive(:logged_in?) { false }
+      allow(view).to receive(:logged_in?) { false }
 
       assign(:line_item, line_item)
 

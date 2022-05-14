@@ -89,5 +89,4 @@ RSpec.configure do |config|
   config.include ViewComponent::TestHelpers, type: :component
   
   config.include Rails.application.routes.url_helpers, type: :component
-  config.include ActionView::Helpers::UrlHelper, type: :component
 end
