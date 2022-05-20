@@ -19,4 +19,10 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
 
   root 'cuisines#index'
+
+  if Rails.env.test?
+    namespace :test do
+      resources :sessions, only: [:create]
+    end
+  end
 end

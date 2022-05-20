@@ -1,5 +1,6 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
+require './spec/support/request_session_helpers'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
@@ -87,6 +88,7 @@ RSpec.configure do |config|
   config.include Capybara::RSpecMatchers, type: :request
   config.include Capybara::RSpecMatchers, type: :component
   config.include ViewComponent::TestHelpers, type: :component
+  config.include RequestSessionHelpers, type: :request
   
   config.include Rails.application.routes.url_helpers, type: :component
 end

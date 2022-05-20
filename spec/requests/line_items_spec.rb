@@ -1,8 +1,14 @@
 require 'rails_helper'
 
+# This spec contains examples for different ways to mock sessions.
+#
+# Ideally we write these integration tests with the goal of matching how
+# the user interacts with the software. In some cases it might make
+# it easier to write tests by mocking some behaviour.
+
 RSpec.describe "LineItems", type: :request do
   describe "POST /menu_items/:menu_item_id/line_items" do
-    let(:user) { create(:user) }
+    let(:user) { create(:user, email: "user@test.com") }
     let(:cart) { create(:cart, user: user) }
     let(:restaurant) { create(:restaurant, name: "Restaurant", slug: "restaurant", images: [create(:image)]) }
     let(:menu_category) { create(:menu_category, restaurant: restaurant) }
@@ -18,8 +24,7 @@ RSpec.describe "LineItems", type: :request do
 
     context "user is authenticated" do
       before(:each) {
-        allow_any_instance_of(SessionsHelper).to receive(:current_user) { user }
-        allow_any_instance_of(CartHelper).to receive(:current_cart) { cart }
+        set_session(user_id: user.id, cart_id: cart.id)
       }
 
       it "creates a new line item with valid params" do
@@ -35,7 +40,7 @@ RSpec.describe "LineItems", type: :request do
         expect(response).to render_template(:new)
       end
 
-      it "render the line item with a quantity of two and a total price" do
+      it "renders the line item with a quantity of two and a total price" do
         post menu_item_line_items_path(menu_item), params: { line_item: { quantity: 5 } }
 
         expect(response).to redirect_to(restaurant_path(slug: "restaurant"))

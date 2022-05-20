@@ -1,16 +1,21 @@
 require 'rails_helper'
 
+# This spec contains examples for different ways to mock sessions.
+#
+# Ideally we write these integration tests with the goal of matching how
+# the user interacts with the software. In some cases it might make
+# it easier to write tests by mocking some behaviour.
+
 RSpec.describe "Orders", type: :request do
   describe "GET /orders/new" do
-    let(:profile) { build(:profile,
+    let(:profile) { create(:profile,
                           address: "123 User Address",
                           postal_code: "A1A 1A1",
                           city: build(:city, name: "City")) }
-    let(:user) { build(:user, profile: profile) }
-    let(:cart) { build(:cart, user: user) }
+    let!(:user) { create(:user, email: "user@test.com", profile: profile) }
 
     it "returns a 200 with the orders/new template" do
-      allow_any_instance_of(CartHelper).to receive(:current_cart) { cart }
+      post sessions_path, params: { session: attributes_for(:user, email: "user@test.com") }
 
       get new_order_path
 
@@ -20,7 +25,7 @@ RSpec.describe "Orders", type: :request do
 
     context "delivery" do
       it "defaults to user address" do
-        allow_any_instance_of(CartHelper).to receive(:current_cart) { cart }
+        login("user@test.com")
 
         get new_order_path
 
@@ -36,10 +41,10 @@ RSpec.describe "Orders", type: :request do
                            restaurant: build(:restaurant, name: "Pickup Restaurant")) }
       let(:menu_category) { build(:menu_category, restaurant: store.restaurant) }
       let(:menu_item) { build(:menu_item, menu_category: menu_category) }
-      let(:cart) { build(:cart, line_items: [create(:line_item, menu_item: menu_item)]) }
+      let(:cart) { create(:cart, line_items: [create(:line_item, menu_item: menu_item)]) }
 
       it "defaults to restaurant address" do
-        allow_any_instance_of(CartHelper).to receive(:current_cart) { cart }
+        set_session(cart_id: cart.id)
 
         get new_order_path(order: { delivery: "false" })
 
