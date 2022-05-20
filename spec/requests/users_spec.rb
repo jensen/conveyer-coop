@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Cuisines", type: :request do
+RSpec.describe "Users", type: :request do
   describe "GET /register" do
     it "returns a 200 status with the users/new template" do
       get register_path
