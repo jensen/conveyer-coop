@@ -40,7 +40,7 @@ RSpec.describe "LineItems", type: :request do
         expect(response).to render_template(:new)
       end
 
-      it "renders the line item with a quantity of two and a total price" do
+      it "renders the line item with a quantity of five and a total price" do
         post menu_item_line_items_path(menu_item), params: { line_item: { quantity: 5 } }
 
         expect(response).to redirect_to(restaurant_path(slug: "restaurant"))
